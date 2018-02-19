@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface TimeEntryRepository extends JpaRepository<TimeEntry, Long> {
     boolean existsByPisAndDatetimeBetween(Long pis, LocalDateTime d1, LocalDateTime d2);
+    List<TimeEntry> findByDatetimeBetweenOrderByPisAscDatetimeAsc(LocalDateTime d1, LocalDateTime d2);
 }

@@ -2,12 +2,12 @@ package com.andreldm.timeclockapi.controller;
 
 import com.andreldm.timeclockapi.dto.TimeEntryDTO;
 import com.andreldm.timeclockapi.model.TimeEntry;
-import com.andreldm.timeclockapi.repository.TimeEntryRepository;
+import com.andreldm.timeclockapi.report.model.PeriodSheet;
 import com.andreldm.timeclockapi.service.TimeEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
+import java.time.YearMonth;
 import java.util.List;
 
 @RestController
@@ -23,6 +23,11 @@ public class TimeEntryController {
     @GetMapping
     public List<TimeEntry> list() {
         return service.findAll();
+    }
+
+    @GetMapping("report")
+    public PeriodSheet report(@RequestParam("period") YearMonth period) {
+        return service.generateReport(period);
     }
 
     @PostMapping("create")

@@ -2,6 +2,7 @@ package com.andreldm.timeclockapi.service;
 
 import com.andreldm.timeclockapi.dto.TimeEntryDTO;
 import com.andreldm.timeclockapi.model.TimeEntry;
+import com.andreldm.timeclockapi.report.model.PeriodSheet;
 import com.andreldm.timeclockapi.repository.TimeEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.YearMonth;
 import java.util.List;
 
 @Service
@@ -22,6 +25,14 @@ public class TimeEntryService {
 
     public List<TimeEntry> findAll() {
         return repository.findAll();
+    }
+
+    public PeriodSheet generateReport(YearMonth period) {
+        LocalDateTime d1 = period.atDay(1).atStartOfDay();
+        LocalDateTime d2 = period.atEndOfMonth().atTime(LocalTime.MAX);
+        List<TimeEntry> entries = repository.findByDatetimeBetweenOrderByPisAscDatetimeAsc(d1, d2);
+
+        return new PeriodSheet(period, entries);
     }
 
     @Transactional
