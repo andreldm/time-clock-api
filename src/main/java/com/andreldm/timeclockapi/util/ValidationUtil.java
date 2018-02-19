@@ -3,6 +3,10 @@ package com.andreldm.timeclockapi.util;
 public class ValidationUtil {
     private static final Integer[] WEIGHTS = {3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
 
+    private ValidationUtil() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static boolean validatePis(Long pis) {
         if (pis == null || pis > 99999999999L)
             return false;

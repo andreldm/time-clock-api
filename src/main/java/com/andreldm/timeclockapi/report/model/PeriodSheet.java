@@ -14,15 +14,7 @@ public class PeriodSheet {
     public PeriodSheet(YearMonth period, List<TimeEntry> entries) {
         this.period = period;
 
-        entries.forEach(e -> {
-            EmployeeRecord record = records.get(e.getPis());
-
-            if (record == null)
-                records.put(e.getPis(), record = new EmployeeRecord());
-
-            record.addTime(e.getDatetime());
-        });
-
+        entries.forEach(e -> records.computeIfAbsent(e.getPis(), p -> new EmployeeRecord()).addTime(e.getDatetime()));
         records.values().forEach(EmployeeRecord::process);
     }
 

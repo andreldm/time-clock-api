@@ -23,12 +23,7 @@ public class EmployeeRecord {
         LocalDate date = dateTime.toLocalDate();
         LocalTime time = dateTime.toLocalTime();
 
-        DayRecord record = records.get(date);
-
-        if (record == null)
-            records.put(date, record = new DayRecord(date));
-
-        record.addTime(time);
+        records.computeIfAbsent(date, DayRecord::new).addTime(time);
     }
 
     public void process() {
@@ -52,13 +47,13 @@ public class EmployeeRecord {
         total += work;
 
         total += workSaturday % 60;
-        total += Math.floor(workSaturday / 60) * 90;
+        total += workSaturday / 60 * 90;
 
         total += workSunday % 60;
-        total += Math.floor(workSunday / 60) * 120;
+        total += workSunday / 60 * 120;
 
         total += extra % 60;
-        total += Math.floor(extra / 60) * 72;
+        total += extra / 60 * 72;
     }
 
     /* Getters */

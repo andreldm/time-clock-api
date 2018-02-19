@@ -79,12 +79,31 @@ public class TimeEntry implements Comparable<TimeEntry> {
 
     @Override
     public int compareTo(TimeEntry other) {
-        int res;
-
-        res = Long.compare(pis, other.getPis());
+        int res = Long.compare(pis, other.getPis());
         if (res != 0)
             return res;
 
         return datetime.compareTo(other.getDatetime());
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TimeEntry timeEntry = (TimeEntry) o;
+
+        if (id != timeEntry.id) return false;
+        if (pis != timeEntry.pis) return false;
+        return datetime != null ? datetime.equals(timeEntry.datetime) : timeEntry.datetime == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (int) (pis ^ (pis >>> 32));
+        result = 31 * result + (datetime != null ? datetime.hashCode() : 0);
+        return result;
     }
 }
