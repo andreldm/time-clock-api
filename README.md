@@ -2,6 +2,14 @@
 
 A sample application for time-clock management demonstrating how simple it is to get started with Spring Boot.
 
+## Specs
+
+- Language: Java 8
+- Build System: Gradle 4.5
+- Framework: Spring Boot 1.5
+- HTTP Server: Jetty 9.4
+- Database: H2
+
 ## Build and run
 Open up the terminal and execute the following commands:
 
