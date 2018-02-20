@@ -2,7 +2,14 @@ package com.andreldm.timeclockapi.report.calculator;
 
 import com.andreldm.timeclockapi.report.model.DayRecord;
 
+/**
+ * Implementation of {@link TimeCalculator} that considers regulars work days,
+ * when the worker arrived to work and is going to leave home (or not).
+ */
 public class RegularCalculator extends TimeCalculator {
+    /**
+     * Hidden constructor, always use {@link TimeCalculatorFactory}.
+     */
     RegularCalculator(DayRecord record) {
         super(record);
     }

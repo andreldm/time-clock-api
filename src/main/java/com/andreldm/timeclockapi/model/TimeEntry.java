@@ -8,18 +8,30 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * A (very) simple model to persist time entries data.
+ */
 @Entity
 @Table(indexes = {
         @Index(name = "INDX", columnList = "pis"),
         @Index(name = "INDX", columnList = "datetime")})
 public class TimeEntry implements Comparable<TimeEntry> {
+    /**
+     * A sequential identifier
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    /**
+     * PIS (Programa de Integração Social) Number, the brazilian identification for workers
+     */
     @Column
     private long pis;
 
+    /**
+     * Time entry timestamp
+     */
     @Column(nullable = false)
     private LocalDateTime datetime;
 
@@ -31,6 +43,27 @@ public class TimeEntry implements Comparable<TimeEntry> {
         this.pis = pis;
         this.datetime = datetime;
     }
+
+    /**
+     * Converts the DTO into a valid model.
+     *
+     * @param dto The DTO to be converted
+     * @return A valid model instance.
+     */
+    public static TimeEntry fromDTO(TimeEntryDTO dto) {
+        if (dto == null)
+            return null;
+
+        if (!ValidationUtil.validatePis(dto.getPis()))
+            throw new IllegalArgumentException("Invalid PIS number");
+
+        if (dto.getTime() == null)
+            dto.setTime(LocalDateTime.now());
+
+        return new TimeEntry(dto.getPis(), dto.getTime());
+    }
+
+    /* Getters & Setters */
 
     public long getId() {
         return id;
@@ -56,25 +89,22 @@ public class TimeEntry implements Comparable<TimeEntry> {
         this.datetime = datetime;
     }
 
+    /**
+     * Shortcut for time entry's date
+     *
+     * @return Date of time entry
+     */
     public LocalDate getDate() {
         return datetime.toLocalDate();
     }
 
+    /**
+     * Shortcut for time entry's time
+     *
+     * @return Time of time entry
+     */
     public LocalTime getTime() {
         return datetime.toLocalTime();
-    }
-
-    public static TimeEntry fromDTO(TimeEntryDTO dto) {
-        if (dto == null)
-            return null;
-
-        if (!ValidationUtil.validatePis(dto.getPis()))
-            throw new IllegalArgumentException("Invalid PIS number");
-
-        if (dto.getTime() == null)
-            dto.setTime(LocalDateTime.now());
-
-        return new TimeEntry(dto.getPis(), dto.getTime());
     }
 
     @Override

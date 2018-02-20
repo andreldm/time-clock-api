@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.YearMonth;
 
+/**
+ * Web controller for time entries.
+ */
 @RestController
 @RequestMapping("/clockin")
 public class TimeEntryController {
@@ -18,11 +21,17 @@ public class TimeEntryController {
         this.service = service;
     }
 
+    /**
+     * @see TimeEntryService#generateReport(YearMonth)
+     */
     @GetMapping("report")
     public PeriodSheet report(@RequestParam("period") YearMonth period) {
         return service.generateReport(period);
     }
 
+    /**
+     * @see TimeEntryService#create(TimeEntryDTO)
+     */
     @PostMapping("create")
     public void create(@RequestBody TimeEntryDTO dto) {
         service.create(dto);

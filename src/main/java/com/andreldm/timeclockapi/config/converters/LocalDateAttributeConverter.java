@@ -5,6 +5,9 @@ import javax.persistence.Converter;
 import java.sql.Date;
 import java.time.LocalDate;
 
+/**
+ * JPA converter for {@link LocalDate} and {@link Date} data types.
+ */
 @Converter(autoApply = true)
 public class LocalDateAttributeConverter implements AttributeConverter<LocalDate, Date> {
     @Override

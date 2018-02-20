@@ -1,5 +1,8 @@
 package com.andreldm.timeclockapi.util;
 
+/**
+ * Utility class for validation methods.
+ */
 public class ValidationUtil {
     private static final Integer[] WEIGHTS = {3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
 
@@ -7,6 +10,11 @@ public class ValidationUtil {
         throw new IllegalStateException("Utility class");
     }
 
+    /**
+     * Shorcut for {@code validatePis(String)}
+     * @param pis PIS Number to be validated
+     * @return if the PIS valid or not
+     */
     public static boolean validatePis(Long pis) {
         if (pis == null || pis > 99999999999L)
             return false;
@@ -14,6 +22,12 @@ public class ValidationUtil {
         return validatePis(String.format("%011d", pis));
     }
 
+    /**
+     * Validates the PIS number's check digit
+     *
+     * @param pis PIS Number to be validated
+     * @return if the PIS valid or not
+     */
     public static boolean validatePis(String pis) {
         if (pis == null || !pis.matches("^[0-9]{11}$"))
             return false;

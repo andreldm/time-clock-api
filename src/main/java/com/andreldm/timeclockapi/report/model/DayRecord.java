@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+/**
+ * Model that groups times entries of the same day and their calculation result.
+ */
 public class DayRecord {
     private final Set<LocalTime> times = new TreeSet<>();
     private long work = 0;

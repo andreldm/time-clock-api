@@ -8,6 +8,9 @@ import org.junit.Test;
 import static com.andreldm.timeclockapi.util.TimeCalculatorUtil.*;
 import static java.time.DayOfWeek.*;
 
+/**
+ * Unit test for {@link com.andreldm.timeclockapi.report.calculator.RegularCalculator} implementation.
+ */
 public class RegularCalculatorTest {
     @Test
     public void simpleWorkDay() {

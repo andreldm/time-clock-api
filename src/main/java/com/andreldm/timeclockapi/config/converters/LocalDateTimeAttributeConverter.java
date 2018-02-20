@@ -5,6 +5,9 @@ import javax.persistence.Converter;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * JPA converter for {@link LocalDateTime} and {@link Timestamp} data types.
+ */
 @Converter(autoApply = true)
 public class LocalDateTimeAttributeConverter implements AttributeConverter<LocalDateTime, Timestamp> {
     @Override

@@ -7,6 +7,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Unit test for PIS validation.
+ */
 public class ValidationUtilTest {
     @Test
     public void testValid() {

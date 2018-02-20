@@ -14,6 +14,9 @@ import java.time.LocalTime;
 import java.time.YearMonth;
 import java.util.List;
 
+/**
+ * Service for time entries
+ */
 @Service
 public class TimeEntryService {
     private TimeEntryRepository repository;
@@ -23,10 +26,21 @@ public class TimeEntryService {
         this.repository = repository;
     }
 
+    /**
+     * Gets all time entries from database.<br/>
+     * USE WITH CAUTION!!!
+     *
+     * @return List of all time entries
+     */
     public List<TimeEntry> findAll() {
         return repository.findAll();
     }
 
+    /**
+     * Generate the monthly time entries report.
+     * @param period Month period, e.g. 2018-02
+     * @return Aggregation grouping entries by employees and days.
+     */
     public PeriodSheet generateReport(YearMonth period) {
         LocalDateTime d1 = period.atDay(1).atStartOfDay();
         LocalDateTime d2 = period.atEndOfMonth().atTime(LocalTime.MAX);
@@ -35,6 +49,13 @@ public class TimeEntryService {
         return new PeriodSheet(period, entries);
     }
 
+    /**
+     * Creates a new time entry.<br/>
+     * The PIS number will be validated and there cannot be two entries in less
+     * than one minutes for the same PIS number.
+     *
+     * @param dto A DTO containing a valid PIS number and a timestamp.
+     */
     @Transactional
     public void create(@RequestBody TimeEntryDTO dto) {
         TimeEntry entry = TimeEntry.fromDTO(dto);

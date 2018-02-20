@@ -11,6 +11,10 @@ import java.util.TreeMap;
 import static java.time.DayOfWeek.SATURDAY;
 import static java.time.DayOfWeek.SUNDAY;
 
+/**
+ * Model that groups time entries of an employee.</br>
+ * It's also responsible to summarize the data of those entries.
+ */
 public class EmployeeRecord {
     private final Map<LocalDate, DayRecord> records = new TreeMap<>();
     private long work = 0;

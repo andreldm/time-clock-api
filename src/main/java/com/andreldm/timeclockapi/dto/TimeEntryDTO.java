@@ -2,6 +2,11 @@ package com.andreldm.timeclockapi.dto;
 
 import java.time.LocalDateTime;
 
+/**
+ * Data Transfer Object for time entries.
+ *
+ * @see com.andreldm.timeclockapi.model.TimeEntry
+ */
 public class TimeEntryDTO {
     private long pis;
     private LocalDateTime time;
@@ -17,6 +22,8 @@ public class TimeEntryDTO {
         this.pis = pis;
         this.time = time;
     }
+
+    /* Getters & Setters */
 
     public long getPis() {
         return pis;

@@ -9,6 +9,9 @@ import java.time.LocalTime;
 import static com.andreldm.timeclockapi.util.TimeCalculatorUtil.stringToMinutes;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Unit test for EmployeeRecord summarizing capabilities.
+ */
 public class EmployeeRecordTest {
     @Test
     public void simple() {

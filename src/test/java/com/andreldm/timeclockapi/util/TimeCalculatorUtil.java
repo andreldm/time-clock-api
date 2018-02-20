@@ -8,6 +8,9 @@ import java.time.LocalTime;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Utility methods for test classes.
+ */
 public class TimeCalculatorUtil {
     public static void checkRecord(DayRecord r, DayOfWeek day, String work, String extra,
                              String rest, boolean missingRest, boolean incomplete) {

@@ -5,6 +5,9 @@ import javax.persistence.Converter;
 import java.sql.Time;
 import java.time.LocalTime;
 
+/**
+ * JPA converter for {@link LocalTime} and {@link Time} data types.
+ */
 @Converter(autoApply = true)
 public class LocalTimeAttributeConverter implements AttributeConverter<LocalTime, Time> {
     @Override

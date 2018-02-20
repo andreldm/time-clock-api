@@ -2,7 +2,14 @@ package com.andreldm.timeclockapi.report.calculator;
 
 import com.andreldm.timeclockapi.report.model.DayRecord;
 
+/**
+ * {@link TimeCalculator} implementation that takes into account scenarios where
+ * the employee has worked overnight.
+ */
 public class OvernightCalculator extends TimeCalculator {
+    /**
+     * Hidden constructor, always use {@link TimeCalculatorFactory}.
+     */
     OvernightCalculator(DayRecord record) {
         super(record);
     }

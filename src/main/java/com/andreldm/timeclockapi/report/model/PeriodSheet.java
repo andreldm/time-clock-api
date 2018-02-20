@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Model that groups employees time entries of a specific period.
+ */
 public class PeriodSheet {
     private final YearMonth period;
     private final Map<Long, EmployeeRecord> records = new TreeMap<>();

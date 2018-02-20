@@ -11,6 +11,9 @@ import static com.andreldm.timeclockapi.util.TimeCalculatorUtil.checkRecord;
 import static com.andreldm.timeclockapi.util.TimeCalculatorUtil.createRecord;
 import static java.time.DayOfWeek.*;
 
+/**
+ * Unit test for {@link com.andreldm.timeclockapi.report.calculator.OvernightCalculator} implementation.
+ */
 public class OvernightCalculatorTest {
     @Test
     public void test() {

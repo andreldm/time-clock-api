@@ -10,6 +10,9 @@ import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 
+/**
+ * Unit test for {@link TimeCalculatorFactory}.
+ */
 public class TimeCalculatorFactoryTest {
     @Test
     public void testRegular() {
