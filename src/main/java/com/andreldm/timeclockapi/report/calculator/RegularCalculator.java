@@ -8,7 +8,7 @@ public class RegularCalculator extends TimeCalculator {
     }
 
     @Override
-    public void calculate() {
+    public void compute() {
         switch (getTimesCount()) {
             case 1: // arrived to work, but stayed to work overnight without a break
                 calcEnd(0);
@@ -29,7 +29,5 @@ public class RegularCalculator extends TimeCalculator {
             default: // corner cases are not currently handled
                 break;
         }
-
-        fillRecord();
     }
 }

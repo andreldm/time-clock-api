@@ -25,9 +25,14 @@ public abstract class TimeCalculator {
         this.times = record.getTimes();
     }
 
-    public abstract void calculate();
+    public final void calculate() {
+        compute();
+        fillRecord();
+    }
 
-    protected void calcStart(int t) {
+    protected abstract void compute();
+
+    protected void calcBegin(int t) {
         calc(LocalTime.MIN, times.get(t));
     }
 
