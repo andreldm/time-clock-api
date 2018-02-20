@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.YearMonth;
+import java.time.format.DateTimeParseException;
 
 /**
  * Web controller for time entries.
@@ -25,8 +26,12 @@ public class TimeEntryController {
      * @see TimeEntryService#generateReport(YearMonth)
      */
     @GetMapping("report")
-    public PeriodSheet report(@RequestParam("period") YearMonth period) {
-        return service.generateReport(period);
+    public PeriodSheet report(@RequestParam("period") String period) {
+        try {
+            return service.generateReport(YearMonth.parse(period));
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Invalid period: " + period);
+        }
     }
 
     /**
